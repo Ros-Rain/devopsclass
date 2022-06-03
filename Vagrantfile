@@ -5,6 +5,7 @@ Vagrant.configure("2") do |config|
 
   config.vm.define "dz3_jenkins" do |build|
 	build.vm.box = "geerlingguy/ubuntu1804"
+    build.vm.box_url = "file:///C:/Users/ros/vagrant/images/geerlingguy-ubuntu1804.box"
     build.vm.hostname = "jenkins"
 	build.vm.network "private_network", ip: "192.168.3.70"
 	build.vm.provider "virtualbox" do |vb|
@@ -17,6 +18,7 @@ Vagrant.configure("2") do |config|
 
   config.vm.define "dz3_nexus" do |nexus|
     nexus.vm.box = "geerlingguy/centos7"
+    nexus.vm.box_url = "file:///C:/Users/ros/vagrant/images/geerlingguy_centos7.box"
 	nexus.vm.hostname = "nexus"
     nexus.vm.network "private_network", ip: "192.168.3.71"
 	nexus.vm.provider "virtualbox" do |vb|
@@ -29,6 +31,7 @@ Vagrant.configure("2") do |config|
 
   config.vm.define "dz3_vproapp" do |vproapp|
     vproapp.vm.box = "geerlingguy/ubuntu1804"
+    vproapp.vm.box_url = "file:///C:/Users/ros/vagrant/images/geerlingguy-ubuntu1804.box"
 	vproapp.vm.hostname = "vproapp"
     vproapp.vm.network "private_network", ip: "192.168.3.72"
 	vproapp.vm.provider "virtualbox" do |vb|
