@@ -5,7 +5,7 @@
   tasks:
     - name: Include vars
       include_vars:
-        dis: vars
+        dir: vars
 
     - name: Create remote temp dir 
       file:
