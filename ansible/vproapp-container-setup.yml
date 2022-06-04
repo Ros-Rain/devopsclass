@@ -1,5 +1,5 @@
 - name: Deploy containers
-  hosts: appsrvgrp // Группа, которую нужно будет прописать в Inventory
+  hosts: appsrvgrp
   become: yes
 
   tasks:
