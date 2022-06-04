@@ -1,0 +1,5 @@
+nexus_host: 192.168.3.71
+nexus_docker_port: 8083
+nexus_docker_repo: vpro-docker-release
+mysql_root_pass: admin123
+mysql_database: accounts
