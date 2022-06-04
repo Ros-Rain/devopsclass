@@ -3,37 +3,35 @@
   become: yes
 
   tasks:
-    - name: Include vars // Подтягиваем переменные
+    - name: Include vars
       include_vars:
-        dis: vars // Создайте папку и файлы в ней по необходимости
+        dis: vars
 
-    - name: Create remote temp dir // Создать папку для временных файлов
-                                   // на целевой машине
+    - name: Create remote temp dir 
       file:
         path: /tmp/vproapp
         state: directory
 
-    - name: Copy Docker Compose files // Приземлить шаблон и скопировать его
-                                      // на целевую машину
+    - name: Copy Docker Compose files
       template:
         src: templates/docker-compose.j2
         dest: /tmp/vproapp/docker-compose.yml
         force: yes
 
-    - name: Stop all docker containers // Останавливаем все докер-контейнеры
+    - name: Stop all docker containers
       shell:
         cmd: docker stop $(docker ps -q)
       ignore_errors: true
       tags:
         - docker-cleanup
 
-    - name: Remove all unused and dangling docker images // Удаляем их
+    - name: Remove all unused and dangling docker images
       shell:
         cmd: docker system prune --all --force
       tags:
         - docker-cleanup
 
-    - name: Setup with docker-compose // Поднимаем контейнеры
+    - name: Setup with docker-compose
       shell:
         cmd: docker compose up -d
         chdir: /tmp/vproapp
@@ -41,7 +39,6 @@
       tags:
         - container-setup
 
-    - name: Display result // Выводим журнал в консоль,
-                           // чтоб был виден в Jenkins
+    - name: Display result
       debug:
         msg: "Log from docker-compose: \n {{contdeploy}}\n"
