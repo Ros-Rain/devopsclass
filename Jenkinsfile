@@ -59,6 +59,11 @@ pipeline {
                                        mavenCoordinate: [artifactId: ARTIFACT_ID, groupId: NEXUS_GROUP, packaging: 'war', version: VERSION]
                                      ]]
           }
+          post {
+               success {
+                   build 'Vproapp'
+               }
+          }
         }
 
     }
